@@ -37,7 +37,6 @@ schema = {
             ")"
         )
     },
-    # only Mongo collection for stock data
     "weekly_prices": {
         "db_type":   "mongo",
         "definition":"weekly_prices(symbol, timestamp, open_price, high_price, low_price, close_price, volume)"
@@ -46,30 +45,19 @@ schema = {
 
 # ─── 3) Few‑shot examples ───────────────────────────────────────────────────────
 EXAMPLES = [
-    # — Mongo find example on weekly_prices —
+    # — Mongo aggregation for weekly_prices —
     {
         "db_type": "mongo",
-        "nl":      "Get the closing price and volume for AAPL on 2025-04-20.",
-        "query":   (
-            "db.weekly_prices.find(\n"
-            '  { symbol: "AAPL", timestamp: ISODate("2025-04-20T00:00:00Z") },\n'
-            '  { close_price: 1, volume: 1 }\n'
-            ");"
-        )
-    },
-    # — Mongo aggregation example for weekly_prices —
-    {
-        "db_type": "mongo",
-        "nl":      "Give me a query to select data from MSFT from the 3rd week of 2021.",
+        "nl":      "Get the closing price and volume for AAPL in week 15 of 2021.",
         "query":   (
             "db.weekly_prices.aggregate([\n"
-            "  { $match: { symbol: \"MSFT\" } },\n"
+            "  { $match: { symbol: \"AAPL\" } },\n"
             "  { $addFields: {\n"
             "      weekOfYear: { $isoWeek:    \"$timestamp\" },\n"
             "      year:       { $isoWeekYear: \"$timestamp\" }\n"
             "    }\n"
             "  },\n"
-            "  { $match: { year: 2021, weekOfYear: 3 } },\n"
+            "  { $match: { year: 2021, weekOfYear: 15 } },\n"
             "  { $project: { weekOfYear: 0, year: 0 } }\n"
             "]);"
         )
@@ -108,11 +96,11 @@ EXAMPLES = [
     },
 ]
 
-# ─── 4) Routing: weekly_prices queries → Mongo, everything else → SQL ────────
+# ─── 4) Routing: weekly_prices → Mongo, everything else → SQL ────────────────
 def detect_db_type(nl_question: str) -> str:
     q = nl_question.lower()
-    # if it mentions stock/week/timestamp/symbol, route to Mongo
-    mongo_keys = ("weekly", "week", "timestamp", "symbol", "stock", "ticker", "price", "volume")
+    # any mention of week or symbol routes to Mongo
+    mongo_keys = ("weekly", "week", "symbol")
     return "mongo" if any(k in q for k in mongo_keys) else "sql"
 
 # ─── 5) Build ChatCompletion messages ─────────────────────────────────────────
@@ -124,7 +112,8 @@ def build_messages(nl_question: str, db_type: str) -> list[dict]:
         "role": "system",
         "content": (
             "You are an AI assistant that converts natural language into database queries. "
-            "Return ONLY the exact query—no explanations."
+            "For the `weekly_prices` collection, data is only available at week granularity up to 2022—"
+            "all queries must specify a week number and year. Return ONLY the query, no explanations."
         )
     }
 
@@ -148,7 +137,7 @@ def build_messages(nl_question: str, db_type: str) -> list[dict]:
     ]
     return [system, {"role": "user", "content": "\n".join(user_lines)}]
 
-# ─── 6) Generate with the OpenAI client ───────────────────────────────────────
+# ─── 6) Generate with OpenAI ─────────────────────────────────────────────────
 def generate_query_openai(nl_question: str, model: str = "gpt-3.5-turbo") -> tuple[str, str]:
     db_type = detect_db_type(nl_question)
     messages = build_messages(nl_question, db_type)
@@ -160,14 +149,13 @@ def generate_query_openai(nl_question: str, model: str = "gpt-3.5-turbo") -> tup
     )
     return db_type, resp.choices[0].message.content.strip()
 
-# ─── 7) Quick smoke‑test ───────────────────────────────────────────────────────
+# ─── 7) Quick smoke‑test ─────────────────────────────────────────────────────
 if __name__ == "__main__":
     tests = [
-        "Get the closing price and volume for GOOG on 2025-05-01.",
-        "Which companies are in the Communication Services industry?",
-        "Show me Amazon's total operating expenses on 2019-03-31.",
-        "How many employees did AAPL report in 2020?",
-        "Give me a query to select data from MSFT from the 3rd week of 2021."
+        "Get the closing price and volume for AAPL in week 15 of 2021.",
+        "List all companies in the Information Technology sector.",
+        "What was Microsoft's R&D spend on 2021-12-31?",
+        "How much revenue did AAPL report in 2022?"
     ]
     for q in tests:
         db, qtext = generate_query_openai(q, model="gpt-4")
