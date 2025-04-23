@@ -2,7 +2,7 @@ import os
 from openai import OpenAI
 
 # ─── 1) Configure your OpenAI client ─────────────────────────────────────────
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+client = OpenAI(api_key='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')
 if not client.api_key:
     raise RuntimeError("Please set the OPENAI_API_KEY environment variable")
 
@@ -38,8 +38,9 @@ schema = {
         )
     },
     "weekly_prices": {
-        "db_type":   "mongo",
-        "definition":"weekly_prices(symbol, timestamp, open_price, high_price, low_price, close_price, volume)"
+        "db_type": "mongo",
+        "definition": "weekly_prices(symbol: String, timestamp: Date, open: Number, high: Number, low: Number, close: Number, volume: Number)",
+        "description": "Stores one document per symbol per ISO week, with OHLC and volume aggregated for that week.  \n• symbol: the ticker (e.g. \"MSFT\")  \n• timestamp: BSON Date at week's close  \n• open, high, low, close: numeric prices  \n• volume: total traded volume"
     }
 }
 
@@ -61,6 +62,73 @@ EXAMPLES = [
             "  { $project: { weekOfYear: 0, year: 0 } }\n"
             "]);"
         )
+    },
+    {
+        "db_type": "mongo",
+        "nl": "Find the document for MSFT on 2020-04-20.",
+        "query": '''db.weekly_prices.find({
+    symbol: "MSFT",
+    timestamp: ISODate("2020-04-20T00:00:00Z")
+});'''
+    },
+    {
+        "db_type": "mongo",
+        "nl": "Get all weekly_prices for AAPL in week 3 of 2020 using a date range.",
+        "query": '''db.weekly_prices.find({
+    symbol: "AAPL",
+    timestamp: {
+        $gte: ISODate("2020-01-13T00:00:00Z"),
+        $lt:  ISODate("2020-01-20T00:00:00Z")
+    }
+});'''
+    },
+    {
+        "db_type": "mongo",
+        "nl": "Show the open and close prices for IBM in week 10 of 2022.",
+        "query": '''db.weekly_prices.aggregate([
+    { $match: { symbol: "IBM" } },
+    { $addFields: {
+        weekOfYear: { $isoWeek:    "$timestamp" },
+        year:       { $isoWeekYear:"$timestamp" }
+    }},
+    { $match: { year: 2022, weekOfYear: 10 } },
+    { $project: { _id: 0, open: 1, close: 1 } }
+]);'''
+    },
+    {
+        "db_type": "mongo",
+        "nl": "Get the top 5 highest-volume weeks for NVDA.",
+        "query": '''db.weekly_prices.aggregate([
+    { $match: { symbol: "NVDA" } },
+    { $sort: { volume: -1 } },
+    { $limit: 5 }
+]);'''
+    },
+    {
+        "db_type": "mongo",
+        "nl": "What was the average closing price per symbol in 2021?",
+        "query": '''db.weekly_prices.aggregate([
+    { $addFields: { year: { $isoWeekYear: "$timestamp" } } },
+    { $match: { year: 2021 } },
+    { $group: {
+        _id: "$symbol",
+        avgClose: { $avg: "$close" }
+    }},
+    { $project: { symbol: "$_id", _id: 0, avgClose: 1 } }
+]);'''
+    },
+    {
+        "db_type": "mongo",
+        "nl": "Insert a new weekly_prices document for TSM with a timestamp and volume 1000000.",
+        "query": '''db.weekly_prices.insertOne({
+    symbol: "TSM",
+    timestamp: ISODate("2025-04-20T00:00:00Z"),
+    open: 110.5,
+    high: 112.0,
+    low: 109.8,
+    close: 111.2,
+    volume: 1000000
+});'''
     },
     # — SQL example for companies —
     {
@@ -93,14 +161,14 @@ EXAMPLES = [
             "WHERE company = 'AAPL'\n"
             "  AND year = 2022;"
         )
-    },
+    }
 ]
 
 # ─── 4) Routing: weekly_prices → Mongo, everything else → SQL ────────────────
 def detect_db_type(nl_question: str) -> str:
     q = nl_question.lower()
     # any mention of week or symbol routes to Mongo
-    mongo_keys = ("weekly", "week", "symbol")
+    mongo_keys = ("weekly", "week", "symbol", "volume", "stock")
     return "mongo" if any(k in q for k in mongo_keys) else "sql"
 
 # ─── 5) Build ChatCompletion messages ─────────────────────────────────────────
@@ -113,7 +181,7 @@ def build_messages(nl_question: str, db_type: str) -> list[dict]:
         "content": (
             "You are an AI assistant that converts natural language into database queries. "
             "For the `weekly_prices` collection, data is only available at week granularity up to 2022—"
-            "all queries must specify a week number and year. Return ONLY the query, no explanations."
+            "Return ONLY the query, no explanations. If we do not ask for a specified time period, do not include the time period."
         )
     }
 
@@ -144,8 +212,8 @@ def generate_query_openai(nl_question: str, model: str = "gpt-3.5-turbo") -> tup
     resp = client.chat.completions.create(
         model=model,
         messages=messages,
-        temperature=0.0,
-        max_tokens=256,
+        temperature=0.05,
+        max_tokens=2000,
     )
     return db_type, resp.choices[0].message.content.strip()
 
