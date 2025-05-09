@@ -1,0 +1,101 @@
+company_id,ticker,name,sector,industry,exchange,created_at,sentiment
+1,AAPL,Apple Inc.,Information Technology,Technology Hardware,NASDAQ,2012-05-31 00:00:00,positive
+2,MSFT,Microsoft Corporation,Information Technology,Software—Infrastructure,NASDAQ,1990-05-21 00:00:00,negative
+3,AMZN,"Amazon.com, Inc.",Consumer Discretionary,Internet Retail,NASDAQ,1978-02-25 00:00:00,positive
+4,GOOGL,Alphabet Inc.,Communication Services,Internet Content,NASDAQ,1980-02-01 00:00:00,negative
+5,META,"Meta Platforms, Inc.",Communication Services,Internet Content,NASDAQ,1999-03-24 00:00:00,negative
+6,NVDA,NVIDIA Corporation,Information Technology,Semiconductors,NASDAQ,1977-05-29 00:00:00,neutral
+7,TSLA,"Tesla, Inc.",Consumer Discretionary,Automobiles,NASDAQ,1982-10-05 00:00:00,positive
+8,BRK.B,Berkshire Hathaway Inc. Class B,Financials,Insurance—Diversified,NYSE,1994-09-14 00:00:00,negative
+9,JPM,JPMorgan Chase & Co.,Financials,Banks—Diversified,NYSE,1983-04-20 00:00:00,negative
+10,V,Visa Inc.,Financials,Credit Services,NASDAQ,1998-01-28 00:00:00,neutral
+11,JNJ,Johnson & Johnson,Health Care,Pharmaceuticals,NASDAQ,2013-12-07 00:00:00,negative
+12,PG,Procter & Gamble Company,Consumer Staples,Household & Personal Products,NASDAQ,1999-01-31 00:00:00,positive
+13,UNH,UnitedHealth Group Incorporated,Health Care,Health Care Plans,NASDAQ,1990-10-25 00:00:00,neutral
+14,HD,"The Home Depot, Inc.",Consumer Discretionary,Specialty Retail,NASDAQ,1981-12-22 00:00:00,neutral
+15,MA,Mastercard Incorporated,Financials,Credit Services,NASDAQ,2014-09-12 00:00:00,neutral
+16,DIS,The Walt Disney Company,Communication Services,Entertainment,NASDAQ,1998-02-07 00:00:00,neutral
+17,XOM,Exxon Mobil Corporation,Energy,Oil & Gas Integrated,NYSE,2006-11-24 00:00:00,positive
+18,PFE,Pfizer Inc.,Health Care,Pharmaceuticals,NASDAQ,2013-08-26 00:00:00,positive
+19,BAC,Bank of America Corporation,Financials,Banks—Diversified,NASDAQ,2002-12-02 00:00:00,neutral
+20,CVX,Chevron Corporation,Energy,Oil & Gas Integrated,NYSE,1998-12-22 00:00:00,negative
+21,VZ,Verizon Communications Inc.,Communication Services,Telecom Services,NASDAQ,1994-03-20 00:00:00,neutral
+22,ADBE,Adobe Inc.,Information Technology,Software—Application,NASDAQ,1984-02-01 00:00:00,negative
+23,PYPL,"PayPal Holdings, Inc.",Financials,Credit Services,NASDAQ,2010-08-25 00:00:00,neutral
+24,CSCO,"Cisco Systems, Inc.",Information Technology,Communication Equipment,NASDAQ,2005-11-16 00:00:00,neutral
+25,INTC,Intel Corporation,Information Technology,Semiconductors,NASDAQ,1998-06-08 00:00:00,negative
+26,NFLX,"Netflix, Inc.",Communication Services,Entertainment,NASDAQ,1992-10-06 00:00:00,negative
+27,CMCSA,Comcast Corporation,Communication Services,Telecom Services,NASDAQ,1984-12-04 00:00:00,neutral
+28,KO,The Coca-Cola Company,Consumer Staples,Beverages Non-Alcoholic,NASDAQ,1989-11-02 00:00:00,negative
+29,PEP,"PepsiCo, Inc.",Consumer Staples,Beverages Non-Alcoholic,NASDAQ,1970-04-17 00:00:00,positive
+30,NKE,"NIKE, Inc.",Consumer Discretionary,Apparel & Footwear,NASDAQ,1987-12-25 00:00:00,negative
+31,CRM,"Salesforce, Inc.",Information Technology,Software—Application,NASDAQ,2013-03-27 00:00:00,positive
+32,ABT,Abbott Laboratories,Health Care,Medical Devices,NASDAQ,1995-05-19 00:00:00,negative
+33,AVGO,Broadcom Inc.,Information Technology,Semiconductors,NASDAQ,1989-04-22 00:00:00,negative
+34,ORCL,Oracle Corporation,Information Technology,Software—Infrastructure,NASDAQ,2001-10-03 00:00:00,positive
+35,MRK,"Merck & Co., Inc.",Health Care,Pharmaceuticals,NASDAQ,2011-06-10 00:00:00,negative
+36,MCD,McDonald's Corporation,Consumer Discretionary,Restaurants,NASDAQ,1973-06-01 00:00:00,positive
+37,TMO,Thermo Fisher Scientific Inc.,Health Care,Life Sciences Tools,NASDAQ,1975-08-06 00:00:00,neutral
+38,TXN,Texas Instruments Incorporated,Information Technology,Semiconductors,NASDAQ,2007-06-06 00:00:00,negative
+39,LLY,Eli Lilly and Company,Health Care,Pharmaceuticals,NASDAQ,1973-06-02 00:00:00,positive
+40,IBM,International Business Machines Corporation,Information Technology,Information Technology Services,NASDAQ,1977-05-31 00:00:00,neutral
+41,WFC,Wells Fargo & Company,Financials,Banks—Diversified,NASDAQ,1984-06-23 00:00:00,negative
+42,BA,The Boeing Company,Industrials,Aerospace & Defense,NYSE,1982-07-22 00:00:00,neutral
+43,MMM,3M Company,Industrials,Conglomerates,NYSE,2006-11-21 00:00:00,neutral
+44,AXP,American Express Company,Financials,Consumer Finance,NASDAQ,1979-03-04 00:00:00,positive
+45,CAT,Caterpillar Inc.,Industrials,Machinery,NASDAQ,2008-02-02 00:00:00,neutral
+46,MDT,Medtronic plc,Health Care,Medical Devices,NASDAQ,1975-07-21 00:00:00,positive
+47,HON,Honeywell International Inc.,Industrials,Conglomerates,NASDAQ,1997-04-30 00:00:00,neutral
+48,LMT,Lockheed Martin Corporation,Industrials,Aerospace & Defense,NASDAQ,1976-08-23 00:00:00,neutral
+49,SBUX,Starbucks Corporation,Consumer Discretionary,Restaurants,NASDAQ,1997-10-30 00:00:00,negative
+50,CVS,CVS Health Corporation,Health Care,Drug Retail,NASDAQ,1980-07-23 00:00:00,neutral
+51,GS,"The Goldman Sachs Group, Inc.",Financials,Capital Markets,NASDAQ,1985-11-01 00:00:00,neutral
+52,MS,Morgan Stanley,Financials,Capital Markets,NASDAQ,1976-02-11 00:00:00,negative
+53,QCOM,Qualcomm Incorporated,Information Technology,Semiconductors,NASDAQ,2008-08-13 00:00:00,positive
+54,NEE,"NextEra Energy, Inc.",Utilities,Utilities—Renewable,NASDAQ,1996-03-08 00:00:00,neutral
+55,UPS,"United Parcel Service, Inc.",Industrials,Air Freight & Logistics,NASDAQ,2008-12-10 00:00:00,positive
+56,UNP,Union Pacific Corporation,Industrials,Railroads,NASDAQ,2013-12-10 00:00:00,negative
+57,AMT,American Tower Corporation,Real Estate,REIT—Specialty,NASDAQ,1977-11-21 00:00:00,negative
+58,BLK,"BlackRock, Inc.",Financials,Asset Management,NASDAQ,1994-10-19 00:00:00,neutral
+59,TGT,Target Corporation,Consumer Discretionary,Specialty Retail,NASDAQ,1994-04-14 00:00:00,neutral
+60,ANTM,"Anthem, Inc.",Health Care,Health Care Plans,NASDAQ,1971-03-31 00:00:00,negative
+61,MO,"Altria Group, Inc.",Consumer Staples,Tobacco,NASDAQ,2002-03-05 00:00:00,positive
+62,PM,Philip Morris International Inc.,Consumer Staples,Tobacco,NASDAQ,1994-08-04 00:00:00,positive
+63,CL,Colgate-Palmolive Company,Consumer Staples,Household & Personal Products,NASDAQ,2005-02-16 00:00:00,negative
+64,RTX,Raytheon Technologies Corporation,Industrials,Aerospace & Defense,NASDAQ,1979-07-14 00:00:00,negative
+65,GE,General Electric Company,Industrials,Industrial Conglomerates,NYSE,1971-01-28 00:00:00,neutral
+66,DOW,Dow Inc.,Industrials,Chemicals,NASDAQ,2009-05-17 00:00:00,positive
+67,WBA,"Walgreens Boots Alliance, Inc.",Consumer Discretionary,Drug Retail,NASDAQ,1986-09-13 00:00:00,positive
+68,VLO,Valero Energy Corporation,Energy,Oil & Gas Refining,NASDAQ,1971-06-24 00:00:00,positive
+69,COP,ConocoPhillips,Energy,Oil & Gas Integrated,NASDAQ,1971-06-09 00:00:00,positive
+70,SLB,Schlumberger Limited,Energy,Oil & Gas Equipment,NASDAQ,1977-11-18 00:00:00,positive
+71,OXY,Occidental Petroleum Corporation,Energy,Oil & Gas E&P,NASDAQ,2000-10-11 00:00:00,positive
+72,KMI,"Kinder Morgan, Inc.",Energy,Oil & Gas Midstream,NASDAQ,2004-02-15 00:00:00,neutral
+73,EOG,"EOG Resources, Inc.",Energy,Oil & Gas E&P,NASDAQ,2009-12-17 00:00:00,positive
+74,DVN,Devon Energy Corporation,Energy,Oil & Gas E&P,NASDAQ,2015-03-01 00:00:00,neutral
+75,MPC,Marathon Petroleum Corporation,Energy,Oil & Gas Refining,NASDAQ,2002-09-26 00:00:00,positive
+76,CCI,Crown Castle International Corp.,Real Estate,REIT—Specialty,NASDAQ,2002-10-08 00:00:00,negative
+77,PPL,PPL Corporation,Utilities,Utilities—Regulated Electric,NASDAQ,2014-09-02 00:00:00,neutral
+78,DUK,Duke Energy Corporation,Utilities,Utilities—Regulated Electric,NASDAQ,2006-03-09 00:00:00,neutral
+79,D,"Dominion Energy, Inc.",Utilities,Utilities—Regulated Gas,NASDAQ,2009-01-29 00:00:00,positive
+80,SO,The Southern Company,Utilities,Utilities—Regulated Electric,NASDAQ,2004-01-08 00:00:00,neutral
+81,WM,"Waste Management, Inc.",Industrials,Environmental Services,NASDAQ,1980-04-18 00:00:00,neutral
+82,RSG,"Republic Services, Inc.",Industrials,Environmental Services,NASDAQ,2002-07-11 00:00:00,negative
+83,AEP,"American Electric Power Company, Inc.",Utilities,Utilities—Regulated Electric,NASDAQ,2002-09-14 00:00:00,neutral
+84,AIG,"American International Group, Inc.",Financials,Insurance—Property & Casualty,NASDAQ,1996-11-03 00:00:00,positive
+85,BMY,Bristol-Myers Squibb Company,Health Care,Pharmaceuticals,NASDAQ,1986-12-03 00:00:00,neutral
+86,AMGN,Amgen Inc.,Health Care,Biotechnology,NASDAQ,1986-08-17 00:00:00,neutral
+87,GILD,"Gilead Sciences, Inc.",Health Care,Biotechnology,NASDAQ,2014-03-14 00:00:00,neutral
+88,TMUS,"T-Mobile US, Inc.",Communication Services,Telecom Services,NASDAQ,2002-03-26 00:00:00,positive
+89,CHTR,"Charter Communications, Inc.",Communication Services,Cable & Satellite,NASDAQ,1972-11-28 00:00:00,neutral
+90,SIRI,Sirius XM Holdings Inc.,Communication Services,Broadcasting,NASDAQ,2001-09-03 00:00:00,positive
+91,EA,Electronic Arts Inc.,Communication Services,Electronic Gaming,NASDAQ,1975-04-07 00:00:00,neutral
+92,FDX,FedEx Corporation,Industrials,Air Freight & Logistics,NASDAQ,1983-02-28 00:00:00,positive
+93,DE,Deere & Company,Industrials,Farm Machinery,NASDAQ,1973-02-08 00:00:00,positive
+94,SPGI,S&P Global Inc.,Industrials,Financial Data,NASDAQ,1986-03-15 00:00:00,negative
+95,SYY,Sysco Corporation,Industrials,Food Distribution,NASDAQ,2007-04-25 00:00:00,neutral
+96,KEY,KeyCorp,Financials,Banks—Regional,NASDAQ,1986-03-07 00:00:00,positive
+97,USB,U.S. Bancorp,Consumer Staples,Banks—Diversified,NASDAQ,2014-04-02 00:00:00,positive
+98,PNC,"The PNC Financial Services Group, Inc.",Financials,Banks—Diversified,NASDAQ,1996-12-25 00:00:00,negative
+99,STT,State Street Corporation,Financials,Capital Markets,NASDAQ,1985-11-12 00:00:00,negative
+100,T,AT&T Inc.,Communication Services,Telecom Services,NYSE,1996-06-12 00:00:00,negative
