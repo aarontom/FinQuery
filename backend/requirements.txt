@@ -1,0 +1,6 @@
+pandas
+sqlalchemy
+pymongo
+python-dotenv
+openai
+uvicorn
